@@ -184,20 +184,43 @@ const Checkout = () => {
               </div>
 
               {/* Payment Options */}
-              <div className="space-y-2 mb-4">
-                {["credit", "debit", "cod"].map((type) => (
-                  <label key={type} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      value={type}
-                      {...register("payment", { required: true })}
-                    />
-                    {type === "cod"
-                      ? "Cash on delivery"
-                      : `${type.charAt(0).toUpperCase() + type.slice(1)} Card`}
-                  </label>
-                ))}
-              </div>
+            <div className="space-y-2 mb-4">
+
+{["credit", "debit", "cod"].map((type) => (
+
+label
+
+key={type}
+
+className={`flex items-center gap-2 ${
+
+type === "cod"? "opacity-50 cursor-not-allowed" : ""
+
+}}
+
+<input
+
+type="radio"
+
+value={type}
+
+disabled={type === "cod"}
+
+{...register("payment", { required: true })}
+
+/>
+
+{type === "cod" 
+
+? "Cash on Delivery (Not Available)"
+
+: `${type.charAt(0).toUpperCase() + type.slice(1)} Card`}
+
+</label>
+
+))}
+
+</div>
 
               {/* Card Details */}
               {(selectedPayment === "credit" ||
